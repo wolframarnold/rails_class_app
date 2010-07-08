@@ -5,6 +5,8 @@ class Address < ActiveRecord::Base
 
   before_validation :set_country_if_missing
 
+  belongs_to :person  # foreign key person_id
+
   private
 
   def set_country_if_missing

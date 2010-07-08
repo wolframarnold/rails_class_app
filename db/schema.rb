@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100708193225) do
+ActiveRecord::Schema.define(:version => 20100708212130) do
 
   create_table "addresses", :force => true do |t|
     t.integer "house_number"
@@ -18,7 +18,10 @@ ActiveRecord::Schema.define(:version => 20100708193225) do
     t.string  "state"
     t.string  "zip"
     t.string  "country"
+    t.integer "person_id"
   end
+
+  add_index "addresses", ["person_id"], :name => "index_addresses_on_person_id"
 
   create_table "calculations", :force => true do |t|
     t.integer  "result"
