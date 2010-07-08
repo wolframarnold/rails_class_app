@@ -1,0 +1,19 @@
+<h1>Calculator</h1>
+<p>Thanks for trying.  Work in progress...</p>
+
+<% form_tag({:controller => 'calculator', :action => 'add'}, {:method => 'get'}) do %>
+    <%= text_field_tag :operand1 %>
+    <%= text_field_tag :operand2 %>
+    <%= submit_tag 'Add' %>
+<% end %>
+
+<%= render :partial => 'stored_results' unless @results.empty? %>
+
+<p>Sum is: <%= @sum %> </p>
+
+<% form_tag({:controller => 'calculator', :action => 'store'}) do %>
+    <%= hidden_field_tag :result, @sum %>
+    <%= submit_tag 'Store' %>
+<% end %>
+
+
