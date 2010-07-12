@@ -12,9 +12,9 @@ describe Address do
     end
   describe "Association" do
 
-    it "should respond to :person" do
+    it "should respond to :people" do
       addr = Address.new
-      addr.should respond_to(:person)
+      addr.should respond_to(:people)
     end
 
     it "should allow creation of a person" do
@@ -22,7 +22,9 @@ describe Address do
       addr = Address.create!(@valid_attributes)
 
       lambda {      
-        addr.create_person(:first_name => "Joe", :last_name => "Smith")
+        lambda {
+          addr.people.create(:first_name => "Joe", :last_name => "Smith")
+        }.should change(PeopleAddressesJoin, :count).by(1)
       }.should change(Person, :count).by(1)
     end
 

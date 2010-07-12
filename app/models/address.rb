@@ -5,7 +5,8 @@ class Address < ActiveRecord::Base
 
   before_validation :set_country_if_missing
 
-  belongs_to :person  # foreign key person_id
+  has_many :people_addresses_joins
+  has_many :people, :through => :people_addresses_joins
 
   private
 
