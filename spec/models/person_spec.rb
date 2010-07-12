@@ -15,13 +15,13 @@ describe Person do
   it 'should not be valid if last_name is missing' do
     p = Person.new(:first_name => "Eve")
     p.should_not be_valid
-    p.errors[:last_name].should == "can't be blank"
+    p.errors[:last_name].should == "must be provided!"
   end
 
   it 'should not be valid if first_name is missing' do
     p = Person.new(:last_name => "Smith")
     p.should_not be_valid
-    p.errors[:first_name].should == "can't be blank"
+    p.errors[:first_name].should == "must be provided!"
   end
 
   it 'should save a record when valid' do
@@ -38,7 +38,7 @@ describe Person do
     lambda {
       p.save
     }.should_not change(Person, :count)
-    p.errors[:first_name].should == "can't be blank"
+    p.errors[:first_name].should == "must be provided!"
   end
 
 end
