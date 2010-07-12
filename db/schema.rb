@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100712161126) do
+ActiveRecord::Schema.define(:version => 20100712163609) do
 
   create_table "addresses", :force => true do |t|
     t.integer "house_number"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20100712161126) do
   end
 
   add_index "people_addresses_joins", ["person_id", "address_id"], :name => "index_people_addresses_joins_on_person_id_and_address_id"
+
+  create_table "phones", :force => true do |t|
+    t.integer "person_id"
+    t.string  "number"
+  end
+
+  add_index "phones", ["person_id"], :name => "index_phones_on_person_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
