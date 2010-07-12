@@ -70,8 +70,19 @@ describe Address do
       # Extra credit: Flesh out these specs.  The implementation code to make these tests pass requires a Rails
       # feature we haven't covered yet.  Hint: Look up before_validation and read about ActiveRecord callbacks in
       # http://api.rubyonrails.org
-      it "should default the country to USA if missing"
-      it "should leave the country unchanged if it's given"
+      it "should default the country to USA if missing" do
+        @valid_attributes.delete(:country)
+        @valid_attributes[:country].should be_nil
+        addr = Address.create(@valid_attributes)
+        addr.should_not be_new_record
+        addr.country.should == 'USA'
+      end
+      it "should leave the country unchanged if it's given" do
+        @valid_attributes[:country] = "Mexico"
+        addr = Address.create(@valid_attributes)
+        addr.should_not be_new_record
+        addr.country.should == 'Mexico'        
+      end
     end
   end
 
