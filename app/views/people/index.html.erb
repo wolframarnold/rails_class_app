@@ -1,4 +1,4 @@
-<h1>List of People</h1>
+<h1>Welcome <%= current_user.login %>: Here is your list of people</h1>
 <ul>
   <% @people.each do |person| %>
     <li><%= h person.full_name %></li>
