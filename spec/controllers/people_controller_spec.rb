@@ -1,6 +1,14 @@
 require "spec_helper"
 
 describe PeopleController do
+  include AuthenticatedTestHelper
+  
+  before do
+    # Note: Because the people controller now requires a password, we need to simulate a logged in state
+    # restful authentication provides a helper for this
+    @user = mock_user
+    login_as @user
+  end
 
   describe "GET index action" do
 

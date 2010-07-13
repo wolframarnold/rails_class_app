@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100708212130) do
+ActiveRecord::Schema.define(:version => 20100709164456) do
 
   create_table "addresses", :force => true do |t|
     t.integer "house_number"
@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(:version => 20100708212130) do
     t.string  "country"
     t.integer "person_id"
   end
-
-  add_index "addresses", ["person_id"], :name => "index_addresses_on_person_id"
 
   create_table "calculations", :force => true do |t|
     t.integer  "result"
@@ -35,5 +33,23 @@ ActiveRecord::Schema.define(:version => 20100708212130) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+    t.string   "activation_code",           :limit => 40
+    t.datetime "activated_at"
+    t.string   "state",                                    :default => "passive"
+    t.datetime "deleted_at"
+  end
+
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
